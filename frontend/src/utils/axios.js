@@ -25,15 +25,13 @@ axiosHandler.interceptors.request.use(
 axiosHandler.interceptors.response.use(
     (response) => response,
     (error) => {
-        console.log(typeof (error?.response?.status))
+
         if (error?.response?.status === 401) {
             toast.error("Session expired. Please login again.");
-            console.log(error)
             localStorage.removeItem("token");
 
             // 👇 redirect logic here
             window.location.href = "/auth/login";
-            console.log("here")
         }
         return Promise.reject(error);
     }

@@ -11,7 +11,7 @@ const useAuthStore = create(persist((set) => ({
         set({ isLoading: true, error: null })
         try {
             await axiosHandler.post('/auth/register', payload)
-            console.log("Registererd")
+
             set({ isLoading: false, error: null })
         } catch (error) {
             set({ isLoading: false, error: error.message || "Network Error" })
@@ -21,7 +21,7 @@ const useAuthStore = create(persist((set) => ({
         set({ isLoading: true, error: null })
         try {
             const res = await axiosHandler.post('/auth/login', payload)
-            console.log(res)
+
             localStorage.setItem("token", res.data.token.access_token)
             set({ isLoading: false, user: res.data.user, isAuthenticated: true, error: null })
         } catch (error) {

@@ -26,9 +26,9 @@ const useProjectStore = create(persist((set, get) => ({
     fetchProjectById: async (projectId) => {
         set({ isLoading: true, error: null })
         try {
-            console.log(projectId)
+
             const res = await axiosHandler.get(`/projects/${projectId}`)
-            console.log(res.data)
+
             set({ currentProject: res.data, isLoading: false, error: null })
         } catch (error) {
             set({ isLoading: false, error: error.message || "Network Error" })
@@ -45,7 +45,6 @@ const useProjectStore = create(persist((set, get) => ({
     },
     updateProject: async (projectId, payload) => {
         set({ isLoading: true, error: null })
-        console.log(projectId)
         try {
             const res = await axiosHandler.patch(`/projects/${projectId}`, payload)
             set({
@@ -61,7 +60,6 @@ const useProjectStore = create(persist((set, get) => ({
         set({ isLoading: true, error: null })
         try {
             const res = await axiosHandler.post(`/projects/${projectId}/tasks`, payload)
-            console.log(res)
             set({ projectTasks: [...get().projectTasks, res.data], isLoading: false, error: null })
         } catch (error) {
             set({ isLoading: false, error: error.message || "Network Error" })
@@ -71,9 +69,7 @@ const useProjectStore = create(persist((set, get) => ({
         set({ isLoading: true, error: null })
         try {
             const res = await axiosHandler.get(`/projects/${projectId}/tasks`)
-            console.log(res.data)
             set({ projectTasks: res.data, tasksProjectId: projectId, isLoading: false, error: null })
-            console.log(get().tasksProjectId)
         } catch (error) {
             set({ isLoading: false, error: error.message || "Network Error" })
         }

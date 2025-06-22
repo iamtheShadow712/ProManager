@@ -23,13 +23,11 @@ const TaskCard = ({ task }) => {
     }
 
     const handleDragStart = (e) => {
-        console.log(e)
         setCurrentTask(task)
     }
 
     const handleContextMenu = (e) => {
         e.preventDefault()
-        console.log(e)
         const menuWidth = 300
         const menuHeight = 300
 
@@ -42,7 +40,6 @@ const TaskCard = ({ task }) => {
             : e.clientY
 
         const position = { left, top }
-        console.log(position)
         toggleCardMenuOpen(true, position, task)
     }
 
@@ -61,7 +58,7 @@ const TaskCard = ({ task }) => {
             onClick={handleClick}
         >
             <div className={`overflow-hidden text-ellipsis ${status !== "backlog" && 'h-1/2'}`}>
-                <h2 className={`text-sm font-semibold mb-2 truncate ${isDarkMode ? 'text-slate-950' : 'text-black'} `}>{title}</h2>
+                <h2 className={`text-sm font-semibold mb-2 truncate ${isDarkMode ? 'text-slate-950' : 'text-black'} ${status === "done" ? 'line-through' : ''} `}>{title}</h2>
             </div>
             {
                 status === "backlog" && (

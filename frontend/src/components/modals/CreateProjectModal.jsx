@@ -48,7 +48,7 @@ const CreateProjectModal = () => {
         formData.description = convertTextToHTML(formData.description)
         formData.start_date = new Date(formData.start_date).toISOString()
         formData.end_date = new Date(formData.end_date).toISOString()
-        console.log(formData)
+
         await createProject(formData)
         if (error) {
             toast(error, {

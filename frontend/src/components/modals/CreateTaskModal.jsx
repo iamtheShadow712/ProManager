@@ -18,7 +18,6 @@ const CreateTaskModal = () => {
 
 
     const handleChange = (e) => {
-        console.log(e)
         setFormData((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
@@ -34,7 +33,7 @@ const CreateTaskModal = () => {
             })
             return
         }
-        console.log(formData)
+
         await createTask(formData, currentProject.id)
         if (error) {
             toast(error, {
